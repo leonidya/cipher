@@ -1,26 +1,39 @@
 
 #TODO-1: Create a function called 'encrypt' that takes the 'text' and 'shift' as inputs.
-def encrypt(text, shift):
-    new_encrypted_word = []
+def ceaser(text, shift, direction):
+    cipher_text = ""
     for letter_from_the_word in text:
         index = alphabet.index(letter_from_the_word)
-        index +=shift
-        if index > 26:
-            index = index%26
-        new_encrypted_word.append(alphabet[index])
-    encrypted_word = ''.join(new_encrypted_word)
-    print(f'The encoded text is {encrypted_word}.')
+        if direction == "encode":
+            index +=shift
+            if index > 26:
+                index = index%26
+        elif direction == "decode":
+            index -=shift
+            if index < 0:
+                index = index+26
+        cipher_text += alphabet[index]
+    print(f'The {direction}d text is {cipher_text}.')
 
-def decrypt(text, shift):
-    new_encrypted_word = []
-    for letter_from_the_word in text:
-        index = alphabet.index(letter_from_the_word)
-        index -=shift
-        if index < 0:
-            index = index+26
-        new_encrypted_word.append(alphabet[index])
-        encrypted_word = ''.join(new_encrypted_word)
-    print(f'The encoded text is {encrypted_word}.')
+# def encrypt(text, shift):
+#     cipher_text = ""
+#     for letter_from_the_word in text:
+#         index = alphabet.index(letter_from_the_word)
+#         index +=shift
+#         if index > 26:
+#             index = index%26
+#         cipher_text += alphabet[index]
+#     print(f'The encoded text is {cipher_text}.')
+
+# def decrypt(text, shift):
+#     cipher_text = ""
+#     for letter_from_the_word in text:
+#         index = alphabet.index(letter_from_the_word)
+#         index -=shift
+#         if index < 0:
+#             index = index+26
+#         cipher_text += alphabet[index]
+#     print(f'The encoded text is {cipher_text}.')
 
     #TODO-2: Inside the 'encrypt' function, shift each letter of the 'text' forwards in the alphabet by the shift amount and print the encrypted text.  
     #e.g. 
@@ -40,7 +53,4 @@ alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n'
 direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n")
 text = input("Type your message:\n").lower()
 shift = int(input("Type the shift number:\n"))
-if direction == "encode":
-    encrypt(text = text, shift = shift)
-elif direction == "decode":
-    decrypt(text = text, shift = shift)
+ceaser(text, shift, direction)
