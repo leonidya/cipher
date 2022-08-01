@@ -7,16 +7,8 @@ shift = int(input("Type the shift number:\n"))
 def encrypt(text, shift):
     new_encrypted_word = []
     for letter_from_the_word in text:
-        index = 0
-        index_found = True
-        while index_found == True:
-            for letter in alphabet:
-                if letter_from_the_word == letter:
-                    index_found = False
-                    break
-                else:
-                    index+=1
-        index+=shift
+        index = alphabet.index(letter_from_the_word)
+        index +=shift
         if index > 26:
             index = index%26
         new_encrypted_word.append(alphabet[index])
